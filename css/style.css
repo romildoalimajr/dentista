@@ -234,7 +234,78 @@ section{
     font-size: 1.5rem;
 }
 
+.contact form{
+    border-radius: .5rem;
+    background-color: var(--light-bg);
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 50rem;
+}
+.contact form .message{
+    margin-bottom: 2rem;
+    border-radius: .5rem;
+    background-color: var(--blue);
+    padding: 1.2rem 1rem;
+    font-size: 1.7rem;
+    color: var(--white);
+    text-align: center;
+}
+.contact form .box{
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: .5rem;
+    background-color: --white;
+    padding:1.2rem 1.4rem;
+    font-size: 1.7rem;
+    color: var(--black);
+}
+.contact form span{
+    font-size: 1.7rem;
+    color: var(--black);
+}
 
+.footer{
+    background-color: var(--light-bg);
+}
+.footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 3rem;
+}
+.footer .box-container .box{
+    text-align: center;
+}
+.footer .box-container .box i{
+    height: 5rem;
+    width: 5rem;
+    font-size: 2rem;
+    border-radius: 50%;
+    line-height: 5rem;
+    background-color: var(--blue);
+    color: var(--white);
+}
+.footer .box-container .box h3{
+    font-size: 2rem;
+    margin: 2rem 0;
+    color: var(--black);
+}
+.footer .box-container .box p{
+    font-size: 1.5rem;
+    color: var(--light-color);
+    text-transform: none;
+}
+.footer .credit{
+    text-align: center;
+    border-top: var(--border);
+    padding-top: 2rem;
+    margin-top: 2rem;
+    font-size: 2rem;
+    color: var(--light-color);
+}
+.footer .credit span{
+    color: var(--blue);
+}
 
 /*media queries*/
 

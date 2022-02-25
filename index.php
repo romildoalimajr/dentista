@@ -1,3 +1,24 @@
+<?php
+$conn = mysqli_connect('localhost', 'root', '', 'contact_db') or die('connection failed');
+
+if (isset($_POST['submit'])) {
+
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $number = $_POST['number'];
+    $date = $_POST['date'];
+
+    $insert = mysqli_query($conn, "INSERT INTO `contact_form` (`name`, `email`, `number`, `data`) 
+    VALUES('$name','$email','$number','$date')") or die('query failed');
+
+    if ($insert) {
+        $message[] = 'agendamento feito com sucesso!';
+    } else {
+        $message[] = 'falha ao agendar';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,7 +108,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ullam?
                 </p>
             </div>
-            
+
             <div class="box">
                 <img src="img/icon-2.svg" alt="">
                 <h3>odontologia estética</h3>
@@ -95,7 +116,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ullam?
                 </p>
             </div>
-            
+
             <div class="box">
                 <img src="img/icon-3.svg" alt="">
                 <h3>higiene oral</h3>
@@ -103,7 +124,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ullam?
                 </p>
             </div>
-            
+
             <div class="box">
                 <img src="img/icon-4.svg" alt="">
                 <h3>tratamento de canal</h3>
@@ -111,7 +132,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ullam?
                 </p>
             </div>
-            
+
             <div class="box">
                 <img src="img/icon-5.svg" alt="">
                 <h3>consultoria dental ao vivo</h3>
@@ -119,7 +140,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ullam?
                 </p>
             </div>
-            
+
             <div class="box">
                 <img src="img/icon-6.svg" alt="">
                 <h3>análise dental</h3>
@@ -142,13 +163,13 @@
                 <h3>Odontologia Estética</h3>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, nam.</p>
             </div>
-            
+
             <div class="box">
                 <img src="img/process-2.png" alt="">
                 <h3>Odontologia Pedriática</h3>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit, nam.</p>
             </div>
-            
+
             <div class="box">
                 <img src="img/process-3.png" alt="">
                 <h3>Implantes Dental</h3>
@@ -166,7 +187,7 @@
             <div class="box">
                 <img src="img/pic-1.png" alt="">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Aut, nulla culpa quas quisquam enim rem tempora similique ipsam fuga laboriosam.
                 </p>
                 <div class="stars">
@@ -182,7 +203,7 @@
             <div class="box">
                 <img src="img/pic-2.png" alt="">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Aut, nulla culpa quas quisquam enim rem tempora similique ipsam fuga laboriosam.
                 </p>
                 <div class="stars">
@@ -198,7 +219,7 @@
             <div class="box">
                 <img src="img/pic-3.png" alt="">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Aut, nulla culpa quas quisquam enim rem tempora similique ipsam fuga laboriosam.
                 </p>
                 <div class="stars">
@@ -216,10 +237,63 @@
     <!--reviews section ends-->
 
     <!--contact section starts-->
-    <section class="contact" id="contact"></section>
+    <section class="contact" id="contact">
+        <h1 class="heading">agende sua consulta</h1>
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <?php
+            if (isset($message)) {
+                foreach ($message as $message) {
+                    echo '<p class="message">' . $message . '</p>';
+                }
+            }
+            ?>
+            <!--<p class="message">testing message box</p>-->
+            <span>seu nome</span>
+            <input type="text" name="name" id="" placeholder="seu nome" class="box" required>
+            <span>seu email</span>
+            <input type="email" name="email" id="" placeholder="seu email" class="box" required>
+            <span>seu telefone</span>
+            <input type="number" name="number" id="" placeholder="seu telefone" class="box" required>
+            <span>escolha uma data</span>
+            <input type="datetime-local" name="date" class="box">
+            <input type="submit" value="marque sua consulta" name="submit" class="link-btn">
+        </form>
+    </section>
     <!--contact section ends-->
-    <!--header section starts-->
-    <!--header section ends-->
+    <!--footer section starts-->
+    <section class="footer">
+        <div class="box-container container">
+
+            <div class="box">
+                <i class="fas fa-phone"></i>
+                <h3>telefone</h3>
+                <p>(81) 9 9470 1058</p>
+                <p>(83) 9 8600 3492</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>endereço</h3>
+                <p>jaboatão guararapes, pernambuco - brasil</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-clock"></i>
+                <h3>horário de atendimento</h3>
+                <p>07:00hs até 18:00hs</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-envelope"></i>
+                <h3>email</h3>
+                <p style="text-transform: none;">odlimor.sevla@gmail.com</p>
+            </div>
+
+        </div>
+        <p class="credit">&copy; copyright @ <?php echo date('Y'); ?> <span>romildo jr.</span> | all right reserved</p>
+    </section>
+    <!--footer section ends-->
 
 
 
